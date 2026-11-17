@@ -1,0 +1,299 @@
+/* ============================================================
+   Friends Tourist — Mobile Professional Layer
+   ------------------------------------------------------------
+   Added 2026-11-16. Loaded AFTER css/style.css on every page.
+   PURPOSE ONLY: make the existing site work professionally
+   on phones / tablets.
+   NO text, phone number, link, price, destination, testimonial
+   or image was changed. Only presentation / layout / touch
+   behaviour is adjusted here.
+   Original css/style.css is untouched.
+   ============================================================ */
+
+/* ---------- 1. No horizontal scroll, ever ---------- */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+img, svg, video {
+  max-width: 100%;
+  height: auto;
+}
+a, p, li, h1, h2, h3, h4, span {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Background images: always cover + centred, never tiled / stretched */
+.hero-wrap,
+.ftco-section.img,
+.ftco-intro .img,
+.ftco-footer,
+.testimony-section,
+.project-destination .img,
+.project-wrap .img,
+.services.services-1,
+.ftco-about .img {
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* ---------- 2. Navbar — the 1110px fixed container was overflowing ---------- */
+.ftco-navbar-light .container {
+  width: auto !important;
+  max-width: 1140px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.navbar-brand {
+  font-size: clamp(19px, 5vw, 24px);
+  white-space: normal;
+  line-height: 1.15;
+  max-width: 72vw;
+}
+.navbar-brand span { text-align: center; }
+.navbar-brand span center { text-align: center; }
+
+.ftco-navbar-light .navbar-toggler {
+  min-width: 48px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+.ftco-navbar-light.scrolled .navbar-toggler {
+  border-color: rgba(0,0,0,.25);
+}
+/* Mobile menu: full-width, roomy tap targets, closes cleanly */
+@media (max-width: 991.98px) {
+  .ftco-navbar-light .navbar-collapse {
+    max-height: calc(100vh - 70px);
+    max-height: calc(100dvh - 70px);
+    overflow-y: auto;
+  }
+  .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
+    padding: 14px 4px !important;
+    font-size: 17px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .ftco-navbar-light.scrolled .navbar-nav > .nav-item > .nav-link {
+    border-bottom-color: rgba(0,0,0,.06);
+  }
+  .ftco-navbar-light .navbar-nav > .nav-item:last-child > .nav-link {
+    border-bottom: 0;
+  }
+}
+
+/* ---------- 3. Hero — fix iOS `background-attachment:fixed` + JS 100vh jump ---------- */
+.hero-wrap {
+  background-attachment: scroll !important; /* fixed is broken / jumpy on iOS */
+  position: relative;
+  overflow: hidden;
+}
+/* main.js sets an inline height in px. Override it on small screens
+   with svh/dvh so the address bar showing/hiding does not cut text. */
+@media (max-width: 991.98px) {
+  .hero-wrap.js-fullheight {
+    height: auto !important;
+    min-height: 92svh;
+    min-height: 92dvh;
+    display: flex;
+    align-items: center;
+  }
+  .hero-wrap.js-fullheight .container { width: 100%; }
+  .slider-text.js-fullheight {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 110px 0 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  /* Inner pages (About / Contact / Destination) use the same hero */
+  .hero-wrap.js-fullheight .slider-text .bread,
+  .hero-wrap.js-fullheight .slider-text h1.bread {
+    padding-top: 20px;
+  }
+}
+.slider-text .subheading {
+  font-size: clamp(24px, 6.5vw, 30px);
+  line-height: 1.2;
+}
+.slider-text h1 {
+  font-size: clamp(32px, 8.6vw, 55px);
+  line-height: 1.18;
+  text-wrap: balance;
+}
+.slider-text h1.bread,
+.slider-text .bread {
+  font-size: clamp(28px, 7.4vw, 44px);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.slider-text p { font-size: clamp(16px, 4.2vw, 20px); }
+.slider-text .caps { font-size: 15px; }
+
+/* ---------- 4. Sections — 7em padding was far too tall on a phone ---------- */
+@media (max-width: 767.98px) {
+  .ftco-section { padding: 3.75em 0; }
+  .ftco-footer { padding: 3.5em 0 7.5em; } /* bottom room for sticky Call/WhatsApp */
+  .heading-section h2 { font-size: clamp(24px, 6.4vw, 32px); line-height: 1.25; text-wrap: balance; }
+  .heading-section h3 { font-size: clamp(19px, 5.2vw, 24px); line-height: 1.35; text-wrap: balance; }
+  .heading-section p { font-size: 16px; line-height: 1.65; }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .ftco-section { padding: 5em 0; }
+}
+
+/* ---------- 5. Buttons — 48px tap targets, full-width CTAs on phones ---------- */
+.btn {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: normal;
+  line-height: 1.3;
+}
+@media (max-width: 575.98px) {
+  .services-section .btn,
+  .ftco-about .btn,
+  .ftco-intro .btn,
+  .ftco-section .text-center .btn {
+    width: 100%;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+/* ---------- 6. Services cards ---------- */
+.services.services-1 { padding: 26px 22px; }
+@media (max-width: 767.98px) {
+  /* The icon was pulled -35px left, which clipped / overflowed on phones */
+  .services.services-1 .icon { margin-left: 0; width: 84px; height: 72px; }
+  .services.services-1 .icon span { font-size: 42px; }
+  .services.services-1 .media-body h3 { font-size: 19px; }
+  .services.services-1 .media-body p { font-size: 15.5px; line-height: 1.6; }
+}
+
+/* ---------- 7. Destinations carousel + cards ---------- */
+.ftco-select-destination .container-2 {
+  max-width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.project-destination .img { height: 320px; }
+.project-destination .text { height: 320px; }
+@media (max-width: 767.98px) {
+  .project-destination .img,
+  .project-destination .text { height: 272px; }
+  .project-wrap { margin-bottom: 24px; }
+  .project-wrap .img { height: 232px; }
+  .project-wrap .text { width: 92%; padding: 20px !important; }
+  .project-wrap .text h3 { font-size: 21px; }
+  .project-wrap .text ul li { font-size: 14px; }
+  /* Owl dots: visible + tappable, so users know they can swipe */
+  .owl-carousel .owl-dots { margin-top: 18px; text-align: center; }
+  .owl-carousel .owl-dots .owl-dot { min-width: 28px; min-height: 28px; }
+  .owl-carousel .owl-dots .owl-dot span {
+    width: 10px; height: 10px; margin: 5px 4px;
+    background: rgba(255,255,255,.55);
+  }
+  .carousel-testimony .owl-dots .owl-dot span { background: #d6d6d6; }
+  .owl-carousel .owl-dots .owl-dot.active span { background: #f15d30; }
+}
+
+/* ---------- 8. About — image collapsed / -100px overlap on phones ---------- */
+@media (max-width: 767.98px) {
+  .ftco-about .img {
+    margin-top: -32px;
+    height: 300px;
+    border-width: 8px;
+  }
+  .ftco-about .about-intro .img { margin-top: 0; }
+  .about-intro .col-md-6.pl-md-5 { padding-top: 2rem !important; }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .ftco-about .img { margin-top: -48px; height: 360px; }
+}
+
+/* ---------- 9. Testimonials — stop the huge blank gaps from stacked <br>s ---------- */
+.testimony-wrap { height: 100%; }
+.testimony-wrap .text { height: 100%; }
+@media (max-width: 767.98px) {
+  /* Text is unchanged; only the extra forced line-breaks are hidden
+     on phones so cards are compact and equal-looking. */
+  .carousel-testimony .testimony-wrap p.mb-4 br { display: none; }
+  .carousel-testimony .testimony-wrap p.mb-4 { min-height: 0; font-size: 15.5px; line-height: 1.65; }
+  .testimony-wrap { padding: 8px 4px; }
+}
+
+/* ---------- 10. Intro banner ---------- */
+@media (max-width: 767.98px) {
+  .ftco-intro .img { padding: 2.25em 1.25em; }
+  .ftco-intro h2 { font-size: 20px; line-height: 1.35; }
+  .ftco-intro p { font-size: 15.5px; }
+}
+
+/* ---------- 11. Footer ---------- */
+@media (max-width: 767.98px) {
+  .ftco-footer .col-md.border-left { border-left: 0 !important; }
+  .ftco-footer .ftco-footer-widget { padding-top: 1.5rem !important; }
+  .ftco-footer-social li a {
+    width: 48px; height: 48px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .ftco-footer p, .ftco-footer .block-23 li { font-size: 15.5px; }
+  .ftco-footer .block-23 ul li .text { overflow-wrap: anywhere; }
+}
+
+/* ---------- 12. Contact page ---------- */
+.contact-section .box { width: 100%; }
+.contact-section .box p a { overflow-wrap: anywhere; word-break: break-word; }
+@media (max-width: 767.98px) {
+  .contact-section .box { margin-bottom: 16px; padding: 24px 18px !important; }
+  .contact-section .box h3 { font-size: 19px; }
+}
+/* 16px inputs stop iOS Safari zooming in on focus */
+input, select, textarea { font-size: 16px; }
+.form-control { min-height: 48px; }
+
+/* ---------- 13. Sticky WhatsApp / Call — safe-area + never cover the footer ---------- */
+.ft-booking-actions {
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  z-index: 99999;
+}
+.ft-booking-actions a { min-height: 48px; }
+@media (max-width: 480px) {
+  .ft-booking-actions {
+    right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); left: 12px;
+  }
+  .ft-booking-actions a { font-size: 14px; }
+}
+
+/* ---------- 14. Tablet polish (768–991px) ---------- */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .slider-text h1 { font-size: 42px; }
+  .project-wrap .img { height: 260px; }
+  .project-destination .img,
+  .project-destination .text { height: 300px; }
+}
+
+/* ---------- 15. Accessibility / motion ---------- */
+a:focus-visible, button:focus-visible, .btn:focus-visible {
+  outline: 3px solid #f15d30;
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
