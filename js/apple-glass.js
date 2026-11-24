@@ -133,6 +133,27 @@
       }
     });
 
+    // Build a WhatsApp enquiry from the editable route and customer phone fields.
+    $(document).on("click", "#hero-book-trigger", function (e) {
+      e.preventDefault();
+      var pickup = $.trim($("#enquiry-pickup").val());
+      var destination = $.trim($("#enquiry-destination").val());
+      var phone = $.trim($("#enquiry-phone").val());
+      var phoneDigits = phone.replace(/\D/g, "");
+
+      if (!pickup) { $("#enquiry-pickup")[0].reportValidity(); return; }
+      if (!destination) { $("#enquiry-destination")[0].reportValidity(); return; }
+      if (!phone || phoneDigits.length < 7) {
+        $("#enquiry-phone")[0].setCustomValidity("Please enter a valid WhatsApp number.");
+        $("#enquiry-phone")[0].reportValidity();
+        $("#enquiry-phone")[0].setCustomValidity("");
+        return;
+      }
+
+      var message = "Hello Friends Tourist, I would like to send an enquiry.\n\nPick-up: " + pickup + "\nGoing to: " + destination + "\nMy phone number: " + phone;
+      window.open("https://wa.me/919900984841?text=" + encodeURIComponent(message), "_blank", "noopener");
+    });
+
     // A very light spatial drift on desktop adds depth without affecting touch scrolling.
     if (window.matchMedia && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       $(document).on("mousemove", ".hero-wrap", function (e) {

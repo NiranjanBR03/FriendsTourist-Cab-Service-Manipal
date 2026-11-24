@@ -175,6 +175,11 @@ a, p, li, h1, h2, h3, h4, span {
 /* ---------- 6. Services cards ---------- */
 .services.services-1 { padding: 26px 22px; }
 @media (max-width: 767.98px) {
+  /* On phones the intro panel and service cards stack vertically. Add a
+     visible breathing space between those two card groups. */
+  .services-section > .container > .row > .col-md-6:nth-child(2) {
+    padding-top: 24px;
+  }
   /* The icon was pulled -35px left, which clipped / overflowed on phones */
   .services.services-1 .icon { margin-left: 0; width: 84px; height: 72px; }
   .services.services-1 .icon span { font-size: 42px; }
@@ -263,6 +268,27 @@ a, p, li, h1, h2, h3, h4, span {
 /* 16px inputs stop iOS Safari zooming in on focus */
 input, select, textarea { font-size: 16px; }
 .form-control { min-height: 48px; }
+
+/* ---------- 16. Innova scroll entrance ---------- */
+@media (max-width: 767.98px) {
+  img[src*="fleet-innova"] {
+    opacity: 0;
+    transform: translateY(34px);
+    transition: opacity .7s ease, transform .7s cubic-bezier(.22, 1, .36, 1);
+  }
+  img[src*="fleet-innova"].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  img[src*="fleet-innova"],
+  img[src*="fleet-innova"].is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 
 /* ---------- 13. Sticky WhatsApp / Call — safe-area + never cover the footer ---------- */
 .ft-booking-actions {

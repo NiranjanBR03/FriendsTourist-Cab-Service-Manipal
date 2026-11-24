@@ -82,9 +82,10 @@
 						<div class="hero-booking-topline"><span class="live-dot"></span> Available 24/7 <span class="hero-booking-caption">Local & outstation</span></div>
 						<h2>Where are you going?</h2>
 						<p>Tell us your route. We’ll make the journey effortless.</p>
-						<div class="hero-route-field"><span class="fa fa-map-marker"></span><span><small>Pick-up from</small><strong>Manipal, Udupi or Mangalore</strong></span><span class="fa fa-chevron-down"></span></div>
-						<div class="hero-route-field"><span class="fa fa-location-arrow"></span><span><small>Going to</small><strong>Choose your destination</strong></span><span class="fa fa-chevron-down"></span></div>
-						<a href="destination.html" class="hero-book-button" id="hero-book-trigger">Explore destinations <span class="fa fa-long-arrow-right"></span></a>
+						<label class="hero-route-field" for="enquiry-pickup"><span class="fa fa-map-marker" aria-hidden="true"></span><span><small>Pick-up from</small><input id="enquiry-pickup" name="pickup" type="text" placeholder="Manipal, Udupi or Mangalore" autocomplete="street-address" required></span></label>
+						<label class="hero-route-field" for="enquiry-destination"><span class="fa fa-location-arrow" aria-hidden="true"></span><span><small>Going to</small><input id="enquiry-destination" name="destination" type="text" placeholder="Choose your destination" autocomplete="off" required></span></label>
+						<label class="hero-route-field" for="enquiry-phone"><span class="fa fa-phone" aria-hidden="true"></span><span><small>Your phone number</small><input id="enquiry-phone" name="phone" type="tel" inputmode="tel" placeholder="10-digit mobile number" autocomplete="tel" pattern="[0-9+ ()-]{7,}" required></span></label>
+						<a href="#" class="hero-book-button" id="hero-book-trigger">Send Enquiry <span class="fa fa-long-arrow-right" aria-hidden="true"></span></a>
 						<div class="hero-card-note"><span class="fa fa-shield"></span> Transparent fares · Clean cars · No hidden charges</div>
 					</div>
 				</div>
@@ -167,10 +168,10 @@
 			<div class="container">
 				<div class="row justify-content-center pb-4"><div class="col-md-10 heading-section text-center ftco-animate"><span class="subheading">Choose your ride</span><h2 class="mb-4">A vehicle for every plan</h2><p>Clean, air-conditioned vehicles matched to your group size, luggage and road ahead.</p></div></div>
 				<div class="row text-center">
-					<div class="col-md-3 ftco-animate"><h3>Sedans</h3><p>Toyota Etios / Swift Dzire · up to 4 passengers</p><p>Airport, campus and city travel</p></div>
-					<div class="col-md-3 ftco-animate"><h3>Innova</h3><p>Toyota Innova · up to 7 passengers</p><p>Ghats, temples and family tours</p></div>
-					<div class="col-md-3 ftco-animate"><h3>Crysta</h3><p>Toyota Innova Crysta · up to 7 passengers</p><p>Luxury highway and VIP travel</p></div>
-					<div class="col-md-3 ftco-animate"><h3>Tempo / Urbania</h3><p>10–17 passenger group vehicles</p><p>Corporate, student and family trips</p></div>
+					<div class="col-md-3 ftco-animate"><img src="images/fleet-sedan.png" alt="Toyota Etios sedan available from Friends Tourist" class="img-fluid mb-3" style="width:100%;height:180px;object-fit:cover;border-radius:6px;"><h3>Sedans</h3><p>Toyota Etios / Swift Dzire · up to 4 passengers</p><p>Airport, campus and city travel</p></div>
+					<div class="col-md-3 ftco-animate"><img src="images/fleet-innova.png" alt="Toyota Innova available from Friends Tourist" class="img-fluid mb-3" style="width:100%;height:180px;object-fit:cover;border-radius:6px;"><h3>Innova</h3><p>Toyota Innova · up to 7 passengers</p><p>Ghats, temples and family tours</p></div>
+					<div class="col-md-3 ftco-animate"><img src="images/fleet-crysta.png" alt="Toyota Innova Crysta available from Friends Tourist" class="img-fluid mb-3" style="width:100%;height:180px;object-fit:cover;border-radius:6px;"><h3>Crysta</h3><p>Toyota Innova Crysta · up to 7 passengers</p><p>Luxury highway and VIP travel</p></div>
+					<div class="col-md-3 ftco-animate"><img src="images/fleet-urbania.png" alt="Force Urbania luxury van available from Friends Tourist" class="img-fluid mb-3" style="width:100%;height:180px;object-fit:cover;border-radius:6px;"><h3>Tempo / Urbania</h3><p>10–17 passenger group vehicles</p><p>Corporate, student and family trips</p></div>
 				</div>
 			</div>
 		</section>
@@ -279,7 +280,7 @@
 								<h3><a>Mysore</a></h3>
 								<p class="location"><span class="fa fa-map-marker"></span> Mysore, Karnataka</p>
 								<ul>
-									<li><span class="flaticon-sun-umbrella"></span>Near Beach</li>
+									<li><span class="flaticon-route"></span>City &amp; Heritage</li>
 								</ul>
 							</div>
 						</div>
@@ -310,7 +311,7 @@
 								<h3><a>Bangalore</a></h3>
 								<p class="location"><span class="fa fa-map-marker"></span> Bangalore, Karnataka</p>
 								<ul>
-									<li><span class="flaticon-sun-umbrella"></span>Near Beach</li>
+									<li><span class="flaticon-route"></span>Near City</li>
 								</ul>
 							</div>
 						</div>

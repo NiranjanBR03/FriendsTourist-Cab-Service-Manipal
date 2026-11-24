@@ -27,6 +27,27 @@
     document.documentElement.style.setProperty("--vh", vh + "px");
   }
 
+  /* Reveal the Innova image gently when it enters the mobile viewport. */
+  function initInnovaScrollAnimation() {
+    var car = document.querySelector('img[src*="fleet-innova"]');
+    if (!car || window.innerWidth >= 768 ||
+        (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) {
+      if (car) car.classList.add("is-visible");
+      return;
+    }
+    if (!("IntersectionObserver" in window)) {
+      car.classList.add("is-visible");
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        car.classList.add("is-visible");
+        observer.disconnect();
+      }
+    }, { threshold: 0.2 });
+    observer.observe(car);
+  }
+
   var resizeTimer;
   $(window).on("resize orientationchange", function () {
     clearTimeout(resizeTimer);
@@ -35,6 +56,7 @@
   // Run after main.js has set its height, and again once fonts load.
   $(window).on("load", fixHeroHeight);
   fixHeroHeight();
+  initInnovaScrollAnimation();
 
   /* 2) Close the mobile menu when a nav link is tapped.
      Bootstrap's collapse normally stays open until the toggler

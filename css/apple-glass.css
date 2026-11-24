@@ -138,7 +138,13 @@ p {
   max-width: 1160px !important;
   z-index: 1030 !important;
   padding: 8px 24px !important;
-  transition: var(--apple-spring) !important;
+  /* Keep the navbar's geometry out of the scroll transition. */
+  transition:
+    background-color 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+    backdrop-filter 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+    -webkit-backdrop-filter 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* Desktop only: sleek horizontal capsule with right-aligned menu links */
@@ -179,7 +185,8 @@ p {
 /* When Scrolled (Liquid Apple White Frosted Glass) */
 .ftco_navbar.scrolled,
 .ftco-navbar-light.scrolled {
-  top: 12px !important;
+  /* Match the initial state so scrolling never moves the navbar. */
+  top: 16px !important;
   background: rgba(255, 255, 255, 0.82) !important;
   -webkit-backdrop-filter: var(--apple-blur-lg) !important;
   backdrop-filter: var(--apple-blur-lg) !important;
@@ -278,7 +285,11 @@ p {
   .ftco_navbar,
   .ftco-navbar-light,
   .ftco_navbar.scrolled,
-  .ftco-navbar-light.scrolled {
+  .ftco-navbar-light.scrolled,
+  .ftco_navbar.scrolled.awake,
+  .ftco_navbar.scrolled.sleep,
+  .ftco-navbar-light.scrolled.awake,
+  .ftco-navbar-light.scrolled.sleep {
     top: 12px !important;
     left: 14px !important;
     right: 14px !important;
@@ -503,6 +514,19 @@ p {
 .hero-route-field:last-of-type > .fa:first-child { color: #30d158; }
 .hero-route-field span:nth-child(2) { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 .hero-route-field small { color: rgba(255,255,255,.55); font-size: 10px; margin-bottom: 3px; }
+.hero-route-field input { width: 100%; padding: 0; border: 0; outline: 0; background: transparent; color: #fff; font: inherit; font-size: 13px; font-weight: 600; }
+.hero-route-field input::placeholder { color: rgba(255,255,255,.88); opacity: 1; }
+.hero-route-field input:focus::placeholder { color: rgba(255,255,255,.55); }
+/* Keep browser address autofill from painting an opaque white rectangle. */
+.hero-route-field input:-webkit-autofill,
+.hero-route-field input:-webkit-autofill:hover,
+.hero-route-field input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  background-color: transparent !important;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset;
+  box-shadow: 0 0 0 1000px transparent inset;
+  transition: background-color 9999s ease-out 0s;
+}
 .hero-route-field strong { color: #fff; font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .hero-route-field > .fa:last-child { color: rgba(255,255,255,.46); font-size: 11px; }
 .hero-book-button { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding: 16px 18px; border-radius: 18px; background: linear-gradient(135deg, #0a84ff, #5e5ce6); color: #fff !important; font-size: 14px; font-weight: 700; box-shadow: 0 12px 28px rgba(10,132,255,.36), inset 0 1px rgba(255,255,255,.65); transition: var(--apple-spring); }
@@ -886,7 +910,7 @@ p {
   width: auto !important;
   height: 82px !important;
   min-height: 0 !important;
-  background: linear-gradient(135deg, rgba(15, 22, 36, 0.66), rgba(15, 22, 36, 0.38)) !important;
+  background: linear-gradient(135deg, rgba(15, 22, 36, 0.28), rgba(15, 22, 36, 0.10)) !important;
   -webkit-backdrop-filter: var(--apple-blur-md) !important;
   backdrop-filter: var(--apple-blur-md) !important;
   border: 1px solid rgba(255, 255, 255, 0.25) !important;
@@ -896,7 +920,7 @@ p {
   transition: var(--apple-spring);
 }
 .project-destination:hover .text {
-  background: linear-gradient(135deg, rgba(15, 22, 36, 0.76), rgba(15, 22, 36, 0.48)) !important;
+  background: linear-gradient(135deg, rgba(15, 22, 36, 0.36), rgba(15, 22, 36, 0.14)) !important;
   transform: translateY(-2px);
 }
 .project-destination .text h3 {
@@ -932,6 +956,15 @@ p {
   transition: var(--apple-spring) !important;
   margin-bottom: 30px;
   position: relative;
+}
+
+/* Keep the information panel below the image. The legacy theme used a
+   -40px overlap here, which hides the duration chip and makes cards touch. */
+.project-wrap .text {
+  width: 100% !important;
+  margin: 0 !important;
+  position: relative !important;
+  border-radius: 0 0 var(--apple-radius-lg) var(--apple-radius-lg);
 }
 
 /* Spatial Specular Reflection on Tour Cards */
